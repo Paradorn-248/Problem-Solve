@@ -11,7 +11,7 @@ void f2(list<int> *mm)
 {
     cout << mm->size() << '\n'; // (*m).size()
 }
-
+list<int>::iterator it;
 int main()
 {
     ios::sync_with_stdio(false);
@@ -36,10 +36,10 @@ int main()
     // ข้อควรระวังในการเรียกใช้STL การเรียกใช้ฟังก์ชันจะpass by valueตามหลักภาษาC แต่จะมีการcopyข้อมูลไปทั้งก้อนเลย ทำให้ทำงานช้าสุดๆ
     // example
     list<int> ll;
-    for(int i=0;i<100000;i++)
-    {
-        ll.push_back(i);
-    }
+    // for(int i=0;i<100000;i++)
+    // {
+    //     ll.push_back(i);
+    // }
     // for(int i=0;i<ll.size();i++)
     // {
     //     f(ll); //ทุกครั้งที่มีการเรียกใช้f()จะเกิดการcopyทุกครั้ง

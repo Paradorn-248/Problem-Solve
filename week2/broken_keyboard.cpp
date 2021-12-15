@@ -6,45 +6,42 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    string s[10000],ans[10000],tmp;
-    // list<string> l[10000];
-    int i=0,mode,ins=0;
-    s[0] = "b";
-    while(s[i]!='\n')
+    string s;
+    
+    int i=0,mode,ins;
+    while(getline(cin,s))
     {
+        list<char> l;
         ins=0;
-        cin >> s[i];
-        for(int j=0;j<s[i].length();j++)
+        list<char>::iterator it;
+        it = l.begin();
+        mode = 1;
+        for(int j=0;j<s.length();j++)
         {
-            if(s[i][j]!='[')
+            if(s[j]=='[')
             {
                 mode=0;
+                it = l.begin();
                 continue;
             }
-            else if(s[i][j]==']')
+            else if(s[j]==']')
             {
                 mode=1;
-                ins=0;
+                continue;
             }
             if(mode==0)
             {
-                ans[i].insert(ins,s[i][j]);
-                ins++;
-                ans[i].erase(j);
-            }
-            if(mode==1)
-            {
-                ans[i].push_back(s[i][j]);
+                l.insert(it,s[j]);
             }
             else
             {
-                ans[i].insert(j,s[i][j]);
+                l.emplace_back(s[j]);
             }
         }
-        i++;
-    }
-    for(i=0;i<3;i++)
-    {
-        cout << ans[i] << '\n';
+        for(auto itt=l.begin();itt!=l.end();itt++)
+        {
+            cout << *itt;
+        }
+        cout << '\n';
     }
 }

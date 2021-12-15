@@ -27,10 +27,12 @@ int main()
         }
         it++;
         l[att[a - 1]].splice(it, l[att[b - 1]]);
-        att[b - 1] = att[a - 1];
+        for(auto itt=l[att[a - 1]].begin();itt!=l[att[a - 1]].end();itt++)
+        {
+            att[*itt-1] = att[a-1];
+        }
     }
 
-    // print
     for (int i = 0; i < n; i++)
     {
         if (l[i].size() != 0)

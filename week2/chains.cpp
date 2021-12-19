@@ -9,7 +9,7 @@ typedef struct node
 } node_t;
 
 node_t *arr_list[100002];
-int arr[100002];
+int ans[100002];
 
 node_t *append(node_t *last, int num)
 {
@@ -171,10 +171,10 @@ int main()
                     run = run->before;
             }
         }
-        arr[a] = run->number;
+        ans[a] = run->number;
     }
     for(int i=0;i<N;i++)
     {
-        cout << arr[i] << '\n';
+        cout << ans[i] << '\n';
     }
 }

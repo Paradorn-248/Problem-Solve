@@ -51,6 +51,9 @@ int main()
     }
 
     int dir = 0;
+    // แสดงทิศทางในการเดิน
+    // 0 ไปข้างหน้าใช้ next
+    // 1 ไปข้างหลังใช้ before
     char menu;
     node_t *run = arr_list[1];
     for (int a = 0; a < N; a++)
@@ -173,7 +176,7 @@ int main()
         }
         ans[a] = run->number;
     }
-    
+
     for(int i=0;i<N;i++)
     {
         cout << ans[i] << '\n';

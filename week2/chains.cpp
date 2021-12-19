@@ -50,7 +50,7 @@ int main()
         }
     }
 
-    int go = 0;
+    int dir = 0;
     char menu;
     node_t *run = arr_list[1];
     for (int a = 0; a < N; a++)
@@ -58,31 +58,31 @@ int main()
         cin >> menu;
         if (menu == 'B')
         {
-            if (go == 1 && run->next != NULL)
+            if (dir == 1 && run->next != NULL)
             {
                 if (run->next->next != NULL && run->next->next == run)
-                    go = 0;
+                    dir = 0;
                 run = run->next;
             }
-            else if (go == 0 && run->before != NULL)
+            else if (dir == 0 && run->before != NULL)
             {
                 if (run->before->before != NULL && run->before->before == run)
-                    go = 1;
+                    dir = 1;
                 run = run->before;
             }
         }
         else if (menu == 'F')
         {
-            if (go == 1 && run->before != NULL)
+            if (dir == 1 && run->before != NULL)
             {
                 if (run->before->before != NULL && run->before->before == run)
-                    go = 0;
+                    dir = 0;
                 run = run->before;
             }
-            else if (go == 0 && run->next != NULL)
+            else if (dir == 0 && run->next != NULL)
             {
                 if (run->next->next != NULL && run->next->next == run)
-                    go = 1;
+                    dir = 1;
                 run = run->next;
             }
         }
@@ -90,7 +90,7 @@ int main()
         {
             int pos;
             cin >> pos;
-            if (go == 0)
+            if (dir == 0)
             {
                 if (run->next != NULL)
                 {
@@ -126,11 +126,11 @@ int main()
                     arr_list[pos] = NULL;
 
                 if (run->next->next != NULL && run->next->next == run)
-                    go = 1;
+                    dir = 1;
                 if (run->next != NULL)
                     run = run->next;
             }
-            else if (go == 1)
+            else if (dir == 1)
             {
                 if (run->before != NULL)
                 {
@@ -166,7 +166,7 @@ int main()
                     arr_list[pos] = NULL;
 
                 if (run->before->before != NULL && run->before->before == run)
-                    go = 0;
+                    dir = 0;
                 if (run->before != NULL)
                     run = run->before;
             }

@@ -19,8 +19,6 @@ int main()
         int each,y,summ=0;
         cin >> each >> y;
         summ = p[each] + y;
-        // cout << upper_bound(p.begin(),p.end(),summ)-p.begin()-1 << "\n";
-        // cout << lower_bound(p.begin(),p.end(),summ)-p.begin() << "\n";
-        cout << summ << " " << lower_bound(p.begin(),p.end(),summ)-p.begin() << "\n";
+        cout << summ << "" <<upper_bound(p.begin(),p.end(),summ)-p.begin()-1 << "\n";
     }
 }

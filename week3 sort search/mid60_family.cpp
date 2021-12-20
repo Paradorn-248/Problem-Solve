@@ -20,18 +20,7 @@ int main()
         cin >> a >> b;
         int ch = 1;
         int tmp = a;
-
-        if (t[a] == b)
-        {
-            cout << b << "\n";
-            continue;
-        }
-        else if (t[b] == a)
-        {
-            cout << a << "\n";
-            continue;
-        }
-        while (t[tmp] != 1)
+        while (tmp!= 1)
         {
             if (t[tmp] == b)
             {
@@ -45,7 +34,7 @@ int main()
             }
         }
         tmp = b;
-        while (t[tmp] != 1)
+        while (tmp!= 1)
         {
             if (t[tmp] == a)
             {

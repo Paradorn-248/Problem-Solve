@@ -1,66 +1,47 @@
 #include<bits/stdc++.h>
 using namespace std;
-vector<long long> vec;
-long long a,b,n,nub=0;;
+vector<int> vec,rvec;
 int main(){
-	scanf("%lld %lld %lld",&n,&a,&b);
-	for(int i=0;i<n;i++){
-		//printf("%d ",i);
-		long long p;
-		scanf("%lld",&p);
-		vec.emplace_back(p);
+	int N,M,minn=1e9;
+	cin >> N >> M;
+	for(int i=0;i<N;i++){
+		int num;
+		cin >> num;
+		if(num<minn) minn = num;
+		vec.emplace_back(minn);
+		rvec.emplace_back(minn);
 	}
-	sort(vec.begin(),vec.end());
+	reverse(rvec.begin(),rvec.end());
 	
-	/*for(auto a:vec)	cout << a << " ";
-	cout << endl;*/
+	for(auto v:vec)	cout << v << " ";
+	cout << endl;
+	for(auto vr:rvec)	cout << vr << " ";
+	cout << endl;
 	
-	for(auto it=vec.begin();it!=vec.end();it++){
-		auto st = lower_bound(it+1, vec.end(), a-*it);
-		auto en = upper_bound(it+1, vec.end(), b-*it);
-		printf(".... %lld %d %d\n",*it,st-vec.begin(),en-vec.begin());
-		//if(it==st) it++;
-		if( (long long)(en - st) > 0 ) nub += (long long)(en - st);
-	}
-	printf("%lld\n",nub);
-	
-	/*long long nub2;
-	for(int i=0;i<n;i++){
-		for(int j=i+1;j<n;j++){
-			if(vec[i]+vec[j] <= b && vec[i]+vec[j] >= a)	nub2++;
+	for(int i=0;i<M;i++){
+		int a,b;
+		cin >> a >> b;
+		if(a==1){
+			b--;
+			printf("%d\n",vec[b]);
+		}else{
+			printf("%d\n", N - (lower_bound(rvec.begin(),rvec.end(),b) - rvec.begin() ) );
 		}
-	}cout << "nub2 = " << nub2 << endl;*/
+	}
 }
-
 /*
-4 10 20
-5
-7
-10
-15
-
-6 60 100
-10
-20
-30
-60
-40
-60
-
-15 60 100
-10
-20
-20
-30
-30
-30
-40
-40
-50
-60
-80
-80
+5 8
 100
-120
-150
+240
+80
+90
+75
+1 1
+2 95
+1 4
+2 80
+2 50
+1 5
+2 120
+2 100
 */

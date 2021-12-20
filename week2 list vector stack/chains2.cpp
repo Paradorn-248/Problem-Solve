@@ -56,3 +56,5 @@ int main()
     for (int a = 0; a < N; a++)
     {
         cin >> menu;
+    }
+}

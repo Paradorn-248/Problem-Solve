@@ -11,10 +11,10 @@ typedef struct node
 node_t *arr_list[100002];
 int ans[100002];
 
-node_t *append(node_t *last, int num)
+node_t *append(node_t *last, int number)
 {
     node_t *new_node = (node_t *)malloc(sizeof(node_t));
-    new_node->number = num;
+    new_node->number = number;
     new_node->before = NULL;
     new_node->next = NULL;
     if (last == NULL)
@@ -95,89 +95,61 @@ int main()
             cin >> pos;
             if (dir == 0)
             {
+                if (arr_list[pos]->before != NULL)
+                {
+                    dir = 1;
+                    arr_list[pos]->next = run;
+                }
+                else
+                {
+                    arr_list[pos]->before = run;
+                }
                 if (run->next != NULL)
                 {
                     arr_list[run->next->number] = run->next;
-                    if (run->next->before != NULL && run->next->before == run)
+                    if (arr_list[run->next->number]->next == run)
                     {
-                        run->next->before = NULL;
+                        arr_list[run->next->number]->next = NULL;
                     }
-                    else if (run->next->next != NULL && run->next->next == run)
+                    else
                     {
-                        run->next->next = NULL;
+                        arr_list[run->next->number]->before = NULL;
                     }
-                }
-                if (run->next == NULL)
-                {
-                    arr_list[run->number] = NULL;
                 }
                 run->next = arr_list[pos];
-                int check = 0;
-                if (arr_list[pos]->before == NULL && arr_list[pos]->next == NULL)
-                {
-                    check = 1;
-                }
-                if (arr_list[pos]->before == NULL)
+                run = run->next;
+            }
+
+            else if (dir == 1)
+            {
+                if (arr_list[pos]->next != NULL)
                 {
                     arr_list[pos]->before = run;
+                    dir = 0;
                 }
-                else if (arr_list[pos]->next == NULL)
+                else
                 {
                     arr_list[pos]->next = run;
                 }
-                if (check == 0)
-                    arr_list[pos] = NULL;
-
-                if (run->next->next != NULL && run->next->next == run)
-                    dir = 1;
-                if (run->next != NULL)
-                    run = run->next;
-            }
-            else if (dir == 1)
-            {
                 if (run->before != NULL)
                 {
                     arr_list[run->before->number] = run->before;
-                    if (run->before->next != NULL && run->before->next == run)
+                    if (arr_list[run->before->number]->before == run)
                     {
-                        run->before->next = NULL;
+                        arr_list[run->before->number]->before = NULL;
                     }
-                    else if (run->before->before != NULL && run->before->before == run)
+                    else
                     {
-                        run->before->before = NULL;
+                        arr_list[run->before->number]->next = NULL;
                     }
-                }
-                if (run->before == NULL)
-                {
-                    arr_list[run->number] = NULL;
                 }
                 run->before = arr_list[pos];
-                int check = 0;
-                if (arr_list[pos]->before == NULL && arr_list[pos]->next == NULL)
-                {
-                    check = 1;
-                }
-                if (arr_list[pos]->next == NULL)
-                {
-                    arr_list[pos]->next = run;
-                }
-                else if (arr_list[pos]->before == NULL)
-                {
-                    arr_list[pos]->before = run;
-                }
-                if (check == 0)
-                    arr_list[pos] = NULL;
-
-                if (run->before->before != NULL && run->before->before == run)
-                    dir = 0;
-                if (run->before != NULL)
-                    run = run->before;
+                run = run->before;
             }
         }
         ans[a] = run->number;
     }
-
-    for(int i=0;i<N;i++)
+    for (int i = 0; i < N; i++)
     {
         cout << ans[i] << '\n';
     }

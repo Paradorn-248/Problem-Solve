@@ -119,7 +119,6 @@ int main()
                 run->next = arr_list[pos];
                 run = run->next;
             }
-
             else if (dir == 1)
             {
                 if (arr_list[pos]->next != NULL)

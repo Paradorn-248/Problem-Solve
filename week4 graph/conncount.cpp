@@ -13,8 +13,7 @@ void dfs(int ind)
             visit[v[ind][i]] = 1;
             dfs(v[ind][i]);
         }
-    }
-    
+    } 
 }
 
 int main()

@@ -22,22 +22,22 @@ void dfs(int x, int y)
         state = 3;
         return;
     }
-    // go left
+    // go up
     if (x - 1 >= 0 && visit[x - 1][y] == 0)
     {
         dfs(x - 1, y);
     }
-    // go right
+    // go down
     if (x + 1 < n && visit[x + 1][y] == 0)
     {
         dfs(x + 1, y);
     }
-    // go up
+    // go left
     if (y - 1 >= 0 && visit[x][y - 1] == 0)
     {
         dfs(x, y - 1);
     }
-    // go down
+    // go right
     if (y + 1 < m && visit[x][y + 1] == 0)
     {
         dfs(x, y + 1);

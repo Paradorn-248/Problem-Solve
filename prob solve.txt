@@ -1,0 +1,39 @@
+priority queue
+-market
+
+หาจำนวนเฉพาะ
+-prfriend_sieve
+
+กราฟหาbipartite
+-bipartite
+
+กราฟหาconnected component
+-conncount
+
+กราฟหาtopo
+-topo
+
+กราฟหาshortest path
+-jumppoint
+-redblackbridge
+-dig
+
+กราฟหาdfs
+-box
+-qualitymap
+-maze3
+
+กราฟหาparent
+-warehouse
+int findParent(int a)
+{
+    if (a == par[a])
+    {
+        return par[a] = a;
+    }
+    return par[a] = findParent(par[a]);
+}
+
+Greedy
+-intsch
+-minimal_coverage

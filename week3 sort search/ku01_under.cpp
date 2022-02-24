@@ -7,12 +7,12 @@ int main()
     cin.tie(NULL);
     vector<pair<int,int>> v;
     float run=0.5;
-    int start,stop,count,ans=-1,L,N;
+    int s,stop,count,ans=-1,L,N;
     cin >> L >> N;
     for(int i=0;i<N;i++)
     {
-        cin >> start >> stop;
-        v.emplace_back(make_pair(start,stop));
+        cin >> s >> stop;
+        v.emplace_back(make_pair(s,stop));
     }
     while(run!=L)
     {

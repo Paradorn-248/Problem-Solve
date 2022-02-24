@@ -3,15 +3,15 @@ using namespace std;
 
 int main()
 {
-    int N,k,T,start=1,res=1;
+    int N,k,T,s=1,res=1;
     cin >> N >> k >> T;
     while(1)
     {
-        start = (start+k)%N;
+        s = (s+k)%N;
         res++;
-        if(start==T)
+        if(s==T)
             break;
-        if(start==1)
+        if(s==1)
         {
             res--;
             break;

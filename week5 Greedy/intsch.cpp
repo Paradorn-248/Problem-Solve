@@ -6,10 +6,10 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int n,start,stop;
+    int n,s,stop;
     cin >> n;
     pair<int,int> p[n];
-    //first เก็บ stop, second เก็บ start
+    //first เก็บ stop, second เก็บ s
     for(int i=0;i<n;i++)
     {
         cin >> p[i].second >> p[i].first;

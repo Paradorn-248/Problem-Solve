@@ -39,7 +39,9 @@
         "tuple": "cpp",
         "*.tcc": "cpp",
         "deque": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

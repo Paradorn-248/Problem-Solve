@@ -1,61 +1,61 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-char s[1005];
-int ar[1005][30][30];
+typedef pair<int,int> pi;
 
-int cal(int now, int last)
-{
-	int cal = min(abs(now - last), abs(26 + last - now));
-	return min(cal, abs(now + 26 - last));
-}
 
-int main()
-{
-	int n, yao;
-	scanf("%d", &n);
-	while (n--)
-	{
-		scanf("%s", s);
-		yao = 0;
-		for (int a = 0; s[a] != '\0'; a++)
-		{
-			yao++;
+int main(){
+	int N;
+	cin >> N;
+	for(int k=1;k<=N;k++){
+		int dis[30000];
+		vector<pair<int,int> > vec[30000];
+		
+		int n,m,st,en;
+		cin >> n >> m >> st >> en;
+		for(int i=0;i<=n;i++){
+			dis[i] = 1e9;
+			//vec[i].clear();
+		}	
+		dis[st] = 0;
+		for(int x,y,z,i=0;i<m;i++){
+			cin >> x >> y >> z;
+			vec[x].emplace_back(make_pair(y,z));
+			vec[y].emplace_back(make_pair(x,z));
 		}
-		for (int m = 0; m <= yao; m++)
-		{
-			for (int a = 1; a <= 26; a++)
-			{
-				for (int b = 1; b <= 26; b++)
-				{
-					ar[m][a][b] = 1e2;
+		
+		priority_queue<pi, vector<pi>, greater<pi> > q;
+		q.push(make_pair(0,st));
+		int ch=0;
+		while(!q.empty()){
+			auto x = q.top();
+			q.pop();
+			int nowdis = x.first;
+			int now = x.second;
+			//printf("%d %d\n",now,nowdis);
+			for(int i=0;i<vec[now].size();i++){
+				int go = vec[now][i].first;
+				//printf("%d\n",go);
+				if( dis[go] > nowdis + vec[now][i].second ){
+					dis[go] = nowdis + vec[now][i].second;
+					q.push(make_pair(dis[go],go));
 				}
 			}
+			//if(ch==1)	break;
+			
 		}
-		ar[0][1][1] = 0;
-		for (int a = 0; s[a] != '\0'; a++)
-		{
-			int cur = s[a] - 'A' + 1;
-			// printf("%d =%d\n",cur,cal(cur,1));
-			for (int b = 1; b <= 26; b++)
-			{
-				for (int c = 1; c <= 26; c++)
-				{
-					ar[a + 1][b][cur] = min(ar[a + 1][b][cur], ar[a][b][c] + cal(c, cur));
-					ar[a + 1][cur][b] = min(ar[a + 1][cur][b], ar[a][c][b] + cal(c, cur));
-					// printf("%d %d %d----%d\n",a+1,b,cur,ar[a+1][b][cur]);
-				}
-			}
-
-		}
-		int ans = 1e9;
-		for (int a = 1; a <= 26; a++)
-		{
-			for (int b = 1; b <= 26; b++)
-			{
-				ans = min(ans, ar[yao][a][b]);
-			}
-		}
-		printf("%d\n", ans);
+		if( dis[en] == 1e9)	printf("Case #%d: unreachable\n",k);
+		else				printf("Case #%d: %d\n",k,dis[en]);
+		
 	}
-	return 0;
 }
+
+/*
+3
+2 1 0 1
+0 1 100
+3 3 2 0
+0 1 100
+0 2 200
+1 2 50
+2 0 0 1
+*/
